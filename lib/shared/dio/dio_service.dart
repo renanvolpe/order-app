@@ -36,7 +36,6 @@ class DioClient implements DioService {
     try {
       Response response = await _dio.get(
         RequestUtils.pathDio(endpoint),
-        queryParameters: RequestUtils.allParams(params),
         options: RequestUtils.headerRequestDio(),
       );
       _printLoggSuccess(response);
@@ -47,8 +46,6 @@ class DioClient implements DioService {
     return Left(errorMessage);
   }
 
-//   DioException (DioException [connection error]: The connection errored: Connection refused This indicates an error which most likely cannot be solved by the library.
-// Error: SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 46264)
   @override
   Future<Either<dynamic, dynamic>> dioPost({required String endpoint, required Map body}) async {
     dynamic errorMessage;
