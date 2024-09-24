@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../core/style/app_color.dart';
-import '../../../../core/style/text_style.dart';
+import '../../../core/style/app_color.dart';
+import '../../../core/style/text_style.dart';
 
 
 class OrderPage extends StatelessWidget {

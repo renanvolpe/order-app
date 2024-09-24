@@ -1,3 +1,6 @@
+import '../../domain/model/order/order_model.dart';
+
 abstract class IOrderDatasource {
-  getOrder();
+  getListOrders();
+  saveOrder(List<OrderModel> listOrders);
 }
