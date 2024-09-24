@@ -7,9 +7,9 @@ import '../../../core/utils/failure.dart';
 import '../../domain/model/order/order_model.dart';
 import '../abstract_datasource/abstract_order_datasource.dart';
 
-class GetOrderRemoteDatasourcecImpl implements IOrderDatasource {
+class GetOrderRemoteDatasourceImpl implements IOrderDatasource {
   DioService dio;
-  GetOrderRemoteDatasourcecImpl(
+  GetOrderRemoteDatasourceImpl(
     this.dio,
   );
   @override

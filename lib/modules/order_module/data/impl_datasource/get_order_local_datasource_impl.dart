@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 
+import '../../../core/utils/failure.dart';
 import '../../../hive_module/order_adapter.dart';
 import '../../domain/model/order/order_model.dart';
 import '../abstract_datasource/abstract_order_datasource.dart';
@@ -7,7 +9,7 @@ import '../abstract_datasource/abstract_order_datasource.dart';
 class GetOrderLocalDatasourceImpl implements IOrderDatasource {
   late LazyBox box;
 
-  GetOrderLocal() {
+  GetOrderLocalDatasourceImpl() {
     _openBox();
   }
 
@@ -22,7 +24,7 @@ class GetOrderLocalDatasourceImpl implements IOrderDatasource {
   }
 
   @override
-  Future<List<OrderModel>> getListOrders() async {
+  Future<Either<Failure, List<OrderModel>>> getListOrders() async {
     List<OrderModel> listOrder = [];
     try {
       for (var id in box.keys) {
@@ -31,9 +33,9 @@ class GetOrderLocalDatasourceImpl implements IOrderDatasource {
         listOrder.add(order);
       }
     } catch (e) {
-      print("error: ${e.toString()}");
+      return const Left(ServerFailure());
     }
-    return listOrder;
+    return Right(listOrder);
   }
 
   @override

@@ -6,8 +6,8 @@ import '../../../core/style/app_color.dart';
 import '../../../core/style/text_style.dart';
 
 
-class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+class ReportPage extends StatelessWidget {
+  const ReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class OrderPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Order Page", textAlign: TextAlign.center, style: Style.greyStyle),
+            Text("Report Page", textAlign: TextAlign.center, style: Style.greyStyle),
             const Gap(20),
             Text("I hope you enjoyed the app :)", textAlign: TextAlign.center, style: Style.greyStyle),
           ],

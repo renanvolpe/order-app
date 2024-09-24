@@ -13,7 +13,7 @@ void main() {
   late IOrderDatasource localDatasource;
 
   setUpAll(() async {
-    remoteDatasource = GetOrderRemoteDatasourcecImpl(DioClient(Dio()));
+    remoteDatasource = GetOrderRemoteDatasourceImpl(DioClient(Dio()));
     await setUpTestHive();
     // TestWidgetsFlutterBinding.ensureInitialized();
     // await HiveConfig.start();
