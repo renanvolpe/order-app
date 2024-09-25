@@ -13,4 +13,5 @@ class HomeModule extends Module {
     r.module('/order', module: OrderModule());
     r.module('/report', module: ReportModule());
   }
+  
 }

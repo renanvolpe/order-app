@@ -2,8 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../app_service.dart';
 import 'home_module/home_module.dart';
-import 'order_module/order_module.dart';
-import 'report_module/report_module.dart';
 import 'shared/shared_mdoule.dart';
 
 class AppModule extends Module {

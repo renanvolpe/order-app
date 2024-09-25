@@ -2,11 +2,11 @@
 import 'dart:convert';
 
 class ItemModel {
-  final String id;
-  final String idProduto;
-  final String nome;
-  final int quantidade;
-  final num valorUnitario;
+   String id;
+   String idProduto;
+   String nome;
+   int quantidade;
+   num valorUnitario;
   ItemModel({
     required this.id,
     required this.idProduto,
