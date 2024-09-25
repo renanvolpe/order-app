@@ -11,3 +11,10 @@ class FilteristOrdersStarted extends GetListOrdersEvent {
     required this.name,
   });
 }
+
+class SelectOrderStarted extends GetListOrdersEvent {
+  final String id;
+  SelectOrderStarted({
+    required this.id,
+  });
+}
