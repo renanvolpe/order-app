@@ -37,7 +37,7 @@ class _OrderPageState extends State<OrderPage> {
         title: Text("PEDIDOS STI3", style: Style.defaultStyle),
         actions: const [SizedBox()],
       ),
-      endDrawer: const DrawerProductsAndPayment(),
+      endDrawer: const DrawerOrderDetail(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,8 +210,8 @@ Future<dynamic> showDialogDetailsOrder(BuildContext context) {
           ));
 }
 
-class DrawerProductsAndPayment extends StatelessWidget {
-  const DrawerProductsAndPayment({super.key});
+class DrawerOrderDetail extends StatelessWidget {
+  const DrawerOrderDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -226,141 +226,72 @@ class DrawerProductsAndPayment extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Gap(10),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 3,
-                            child: Text(
-                              "PRODUTO",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.clip,
-                            )),
-                        Expanded(
-                            flex: 1,
-                            child: Text(
-                              "QTD",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.clip,
-                            )),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              "VALOR UNIT.",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.clip,
-                            )),
-                      ],
+                    Text("Detalhes do pedido", style: Style.defaultStyle.copyWith(fontSize: 24)),
+                    const Gap(30),
+                    Text(
+                      "Informações do pedido",
+                      style: Style.primaryStyle.copyWith(fontSize: 18),
                     ),
                     const Gap(10),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: order.itens.length,
-                        itemBuilder: (_, index) {
-                          var item = order.itens[index];
-                          return Row(
-                            children: [
-                              Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    item.nome,
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.left,
-                                    overflow: TextOverflow.clip,
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    item.quantidade.toString(),
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.center,
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    item.valorUnitario.toString(),
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.center,
-                                  )),
-                            ],
-                          );
-                        }),
-                    const Gap(60),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 3,
-                            child: Text(
-                              "PAGAMENTO",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.clip,
-                            )),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              "PARCELA",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.clip,
-                            )),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              "VALOR",
-                              style: Style.defaultStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.clip,
-                            )),
-                      ],
+                    Text("Numero: ${order.id}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Data Criação: ${DateIntl.stringToDateHome(order.dataCriacao)}",
+                        style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Data Alteração: ${DateIntl.stringToDateHome(order.dataAlteracao)}",
+                        style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Status: ${order.status}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Desconto: ${order.desconto}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Frete: ${order.frete}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("SubTotal: ${order.subTotal}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("total: ${order.valorTotal}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    const Gap(10),
+                    Text(
+                      "Dados do Cliente",
+                      style: Style.primaryStyle.copyWith(fontSize: 18),
                     ),
                     const Gap(10),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: order.pagamento.length,
-                        itemBuilder: (_, index) {
-                          var pag = order.pagamento[index];
-                          return Row(
-                            children: [
-                              Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    pag.nome,
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.left,
-                                    overflow: TextOverflow.clip,
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    pag.parcela.toString(),
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.center,
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    pag.valor.toString(),
-                                    style: Style.defaultStyle.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.center,
-                                  )),
-                            ],
-                          );
-                        }),
-                    const Gap(20),
-                    GestureDetector(
-                        onDoubleTap: () => showDialogDetailsOrder(context),
-                        child: Text(
-                          "Detalhar",
-                          style: Style.defaultStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.clip,
-                        ))
+                    Text("Cliente: ${order.cliente.nome}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Documento: ${order.cliente.cnpj}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Data de nascimento: ${DateIntl.stringToDateHome(order.cliente.dataNascimento)}",
+                        style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("E-mail: ${order.cliente.email}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    const Gap(10),
+                    Text(
+                      "Local de Entrega",
+                      style: Style.primaryStyle.copyWith(fontSize: 18),
+                    ),
+                    const Gap(10),
+                    Text("Endereço: ${order.enderecoEntrega.endereco}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Numero: ${order.enderecoEntrega.numero}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("CEP: ${order.enderecoEntrega.cep}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Bairro: ${order.enderecoEntrega.bairro}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Cidade: ${order.enderecoEntrega.cidade}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Estado: ${order.enderecoEntrega.estado}", style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Complemento: ${order.enderecoEntrega.complemento}",
+                        style: Style.darkStyle.copyWith(fontSize: 14)),
+                    Text("Referencia: ${order.enderecoEntrega.referencia}",
+                        style: Style.darkStyle.copyWith(fontSize: 14)),
+                    const Gap(40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            GestureDetector(
+                                onDoubleTap: () => showDialogDetailsOrder(context),
+                                child: Text(
+                                  "Detalhar",
+                                  style: Style.defaultStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.clip,
+                                )),
+                            Text("(Clique duas vezes para detalhar)", style: Style.greyStyle.copyWith(fontSize: 13))
+                          ],
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
