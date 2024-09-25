@@ -1,36 +1,24 @@
 import 'package:dartz/dartz.dart';
-import 'package:hive/hive.dart';
 
 import '../../../core/utils/failure.dart';
-import '../../../hive_module/order_adapter.dart';
+import '../../../hive_module/hive_config.dart';
 import '../../domain/model/order/order_model.dart';
 import '../abstract_datasource/abstract_order_datasource.dart';
 
 class GetOrderLocalDatasourceImpl implements IOrderDatasource {
-  late LazyBox box;
+  final HiveConfig hiveConfig;
 
-  GetOrderLocalDatasourceImpl() {
-    _openBox();
-  }
-
-  _openBox() async {
-    //TODO REMOVE THIS FROM HERE AND SPLIT LIKE DIOSERVICE
-    Hive.registerAdapter(PaymentAdapter());
-    Hive.registerAdapter(ClienteModelAdapter());
-    Hive.registerAdapter(ItemModelAdapter());
-    Hive.registerAdapter(AddressOrderModelAdapter());
-    Hive.registerAdapter(OrderAdapter());
-    box = await Hive.openLazyBox<OrderModel>("orders");
-  }
+  GetOrderLocalDatasourceImpl(this.hiveConfig);
 
   @override
   Future<Either<Failure, List<OrderModel>>> getListOrders() async {
     List<OrderModel> listOrder = [];
-    try {
-      for (var id in box.keys) {
-        var order = await box.get(id);
 
-        listOrder.add(order);
+    try {
+      for (var id in hiveConfig.box.keys) {
+        var order = await hiveConfig.box.get(id);
+
+        listOrder.add(order!);
       }
     } catch (e) {
       return const Left(ServerFailure());
@@ -42,7 +30,7 @@ class GetOrderLocalDatasourceImpl implements IOrderDatasource {
   Future<bool> saveOrder(List<OrderModel> listOrders) async {
     try {
       for (var e in listOrders) {
-        await box.put(e.id, e); // add in hive
+        await hiveConfig.box.put(e.id, e); // add in hive
       }
     } catch (e) {
       return false;

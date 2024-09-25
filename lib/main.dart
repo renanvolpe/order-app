@@ -7,15 +7,27 @@ import 'modules/hive_module/hive_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveConfig.start();
+
   initializeDateFormatting();
   runApp(ModularApp(module: AppModule(), child: const MyApp()));
 }
 
 Locale myLocale = const Locale('pt', 'BR');
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void didChangeDependencies() async {
+    await Modular.get<HiveConfig>().init();
+
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

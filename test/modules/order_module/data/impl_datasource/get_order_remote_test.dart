@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_test/hive_test.dart';
+import 'package:order_app/modules/hive_module/hive_config.dart';
 import 'package:order_app/modules/order_module/data/abstract_datasource/abstract_order_datasource.dart';
 import 'package:order_app/modules/order_module/data/impl_datasource/get_order_local_datasource_impl.dart';
 import 'package:order_app/modules/order_module/data/impl_datasource/get_order_remote_datasource_impl.dart';
@@ -16,8 +17,9 @@ void main() {
     remoteDatasource = GetOrderRemoteDatasourceImpl(DioClient(Dio()));
     await setUpTestHive();
     // TestWidgetsFlutterBinding.ensureInitialized();
-    // await HiveConfig.start();
-    localDatasource = GetOrderLocalDatasourceImpl();
+    var hive = HiveConfig();
+    await hive.init();
+    localDatasource = GetOrderLocalDatasourceImpl(hive);
   });
   tearDownAll(() async {
     await tearDownTestHive();
