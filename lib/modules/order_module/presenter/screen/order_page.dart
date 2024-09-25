@@ -7,9 +7,12 @@ import 'package:gap/gap.dart';
 import '../../../core/style/app_color.dart';
 import '../../../core/style/text_style.dart';
 import '../../../core/utils/date_intl.dart';
+import '../../../home_module/presenter/screen/home_page.dart';
 import '../../domain/model/order/order_model.dart';
 import '../bloc/get_list_order/get_list_orders_bloc.dart';
 import '../widget/drawer_order_detail.dart';
+
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -34,6 +37,8 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
+      endDrawerEnableOpenDragGesture: false,
       appBar: AppBar(
         leading: GestureDetector(
             onTap: () => Modular.to.pop(), child: const Icon(Icons.chevron_left, color: AppColor.kPrimary)),

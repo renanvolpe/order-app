@@ -10,8 +10,7 @@ class SharedModule extends Module {
     i.add(() => Dio());
     i.addSingleton<DioService>(DioClient.new);
 
-    i.addSingleton(HiveConfig.new);
-    //Start DB in main
+    i.addSingleton(HiveConfig.new);//Start DB in main
 
     super.exportedBinds(i);
   }

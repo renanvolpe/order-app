@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 
 import '../../../core/style/text_style.dart';
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,29 +12,19 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      key: scaffoldKey,
       appBar: AppBar(
         leadingWidth: MediaQuery.sizeOf(context).width,
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextButton(
-                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+                onPressed: () => scaffoldKey.currentState?.openDrawer(),
                 child: Text("MENU", style: Style.defaultStyle)),
           ],
         ),
       ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(title: const Text('PEDIDOS'), onTap: () => Modular.to.pushNamed('/order/')),
-              ListTile(title: const Text('RELATÓRIOS'), onTap: () => Modular.to.pushNamed('/report/')),
-            ],
-          ),
-        ),
-      ),
+      drawer: const DrawerMenu(),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,7 +32,29 @@ class HomePage extends StatelessWidget {
           children: [
             Text("Home Page", textAlign: TextAlign.center, style: Style.greyStyle),
             const Gap(20),
+            const RouterOutlet(),
             Text("I hope you enjoyed the app :)", textAlign: TextAlign.center, style: Style.greyStyle),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DrawerMenu extends StatelessWidget {
+  const DrawerMenu({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            ListTile(title: const Text('PEDIDOS'), onTap: () => Modular.to.pushNamed('/order/')),
+            ListTile(title: const Text('RELATÓRIOS'), onTap: () => Modular.to.pushNamed('/report/')),
           ],
         ),
       ),
