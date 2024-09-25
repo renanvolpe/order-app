@@ -352,9 +352,9 @@ class DrawerProductsAndPayment extends StatelessWidget {
                             ],
                           );
                         }),
-                    const Gap(10),
-                    TextButton(
-                        onPressed: () => showDialogDetailsOrder(context),
+                    const Gap(20),
+                    GestureDetector(
+                        onDoubleTap: () => showDialogDetailsOrder(context),
                         child: Text(
                           "Detalhar",
                           style: Style.defaultStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
