@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:order_app/modules/order_module/order_module.dart';
 
-import 'presenter/screen/order_page.dart';
+import 'presenter/screen/report_page.dart';
 import 'presenter/widget/cubit/calculate_reports_cubit.dart';
 
 class ReportModule extends Module {

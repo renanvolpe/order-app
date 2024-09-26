@@ -59,6 +59,8 @@ class CalculateReportsCubit extends Cubit<CalculateReportsState> {
       }
     }
 
+    listCities.sort((a, b) => b.amount.compareTo(a.amount));
+
     emit(CalculateReportsSoldByCity(listCities));
   }
 
@@ -77,7 +79,6 @@ class CalculateReportsCubit extends Cubit<CalculateReportsState> {
         lesstEqualThan30.add(age);
       }
     }
-    // dates.sort((a, b) => DateTime.parse(a).compareTo(DateTime.parse(b)));
 
     emit(CalculateReportsSoldByAge(moreThan30, lesstEqualThan30));
   }
