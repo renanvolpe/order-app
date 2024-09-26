@@ -21,7 +21,7 @@ de Pedidos que serão os dados que deverão ser armazenados no banco de dados(ch
 - Cada item da lista corresponde a um Pedido de um Cliente, com 1 ou vários produtos e 1 ou várias parcelas.(check)
 - Ao clicar 1x no item da lista, exibir na coluna lateral todos os dados do Pedido correspondente.
 - Ao clicar 2x ou num botão Detalhes, abrir uma nova tela (modal) para exibir os dados dos produtos e parcelas
-correspondentes ao Pedido selecionado.
+correspondentes ao Pedido selecionado. (check)
 
 
 
@@ -29,16 +29,30 @@ correspondentes ao Pedido selecionado.
 Nesta tela deverá conter um combo box para selecionar as seguintes opções e apresentar os seguintes dados numa
 tabela abaixo:
 • Listagem de Produtos mais vendidos
-    o Produto, QuanƟdade e Valor Médio
-• Totalização de Formas de Pagamento por Dia
-    o Data do Pedido, Forma de Pagamento e Valor
-• Totalização de Vendas por Cidade
-    o Cidade, QuanƟdade dos Pedidos e Valor Total
-• Totalização de Vendas por Faixa Etária
-    o Faixa Etária, QuanƟdade de Pedidos e Valor Total
+    o Produto, QuanƟdade e Valor Médio(check)
 
-# Critério de Aceite
-- Consultar webservice, armazenar no banco de dados e exibi-los na tela.
-- Desenvolver com código limpo e organizado.
-# Exemplo de projeto entregue em Desktop:
-hƩps://desafiosƟ3.blob.core.windows.net/dev/Video_exemplo.mp4
+• Totalização de Formas de Pagamento por Dia
+    o Data do Pedido, Forma de Pagamento e Valor(check)
+
+• Totalização de Vendas por Cidade
+    o Cidade, QuanƟdade dos Pedidos e Valor Total(check)
+
+• Totalização de Vendas por Faixa Etária
+    o Faixa Etária, QuanƟdade de Pedidos e Valor Total(check)
+
+# Comenários sobre a produção do código
+- Utilizei o banco de dados local -> Hive
+- Gerenciamento de estados -> BLoC
+- Injeção de dependencia -> Flutter Modular
+- Navegação -> Flutter Modular
+- Estrutua de projeto: Clean Arch UI <-> BLoC <-> UseCase <-> Repository <-> DataSource
+- Utilizei o Cubit para a parte de relatórios e suas funcionaliades
+- Não foquei tanto em tratamento de erro e Layout UI visto que nao era critério de avaliação mas tenho exemplos em meu github desses usos
+
+# Libs importantes
+- dio para requisições http
+- dartz para tratamento de erros(nao muito explorado)
+- logger visualização melhorada do terminal
+- intl uso e tratamento de datas
+- bloc_test teste para verificação de lógica correta
+  
